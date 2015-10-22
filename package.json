@@ -1,0 +1,41 @@
+{
+  "name": "sliding-tabs",
+  "version": "1.0.0",
+  "description": "enable touch swip on bootstrap tabs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "bootstrap",
+    "tabs",
+    "touch",
+    "react",
+    "react-bootstrap",
+    "swipe"
+  ],
+  "author": "Amir5000",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-react": "^3.0.1",
+    "gulp-sass": "^2.0.1",
+    "gulp-server-livereload": "^1.3.0",
+    "gulp-util": "^3.0.4",
+    "gulp-watch": "^4.2.4",
+    "node-notifier": "^4.2.1",
+    "reactify": "^1.1.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^2.4.0"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "jquery": "^2.1.4",
+    "jquery-touchswipe": "^1.6.12",
+    "react": "^0.14.0",
+    "react-bootstrap": "^0.27.2",
+    "react-dom": "^0.14.0"
+  }
+}
