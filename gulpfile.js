@@ -10,6 +10,7 @@ var concat = require('gulp-concat');
 var less = require('gulp-less');
 var watch = require('gulp-watch');
 var path = require('path');
+var resolutions = require('browserify-resolutions');
 
 var notify = function(error) {
   var message = 'In: ';
@@ -44,6 +45,7 @@ var bundler = watchify(browserify({
 
 function bundle() {
   return bundler
+    .plugin(resolutions, 'react')
     .bundle()
     .on('error', notify)
     .pipe(source('main.js'))
