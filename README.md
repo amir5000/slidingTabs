@@ -5,6 +5,6 @@ a touch enabled react-bootstrap tabs component
 * HTML
 * CSS
 * Javascript
-* jQuery
 * react
 * bootstrap / react-bootstrap
+* react-hammerjs
