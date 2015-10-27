@@ -1,5 +1,5 @@
 # reactSlidingTabs
-a touch enabled react-bootstrap tabs component
+A touch enabled react-bootstrap Tabs component built with react-hammerjs for the event listening.
 
 ## Technologies used:
 * HTML
