@@ -7,10 +7,8 @@ var reactify = require('reactify');
 var notifier = require('node-notifier');
 var server = require('gulp-server-livereload');
 var concat = require('gulp-concat');
-var less = require('gulp-less');
+var sass = require('gulp-sass');
 var watch = require('gulp-watch');
-var path = require('path');
-var resolutions = require('browserify-resolutions');
 
 var notify = function(error) {
   var message = 'In: ';
@@ -30,11 +28,12 @@ var notify = function(error) {
   if(error.lineNumber) {
     message += '\nOn Line: ' + error.lineNumber;
   }
+
   notifier.notify({title: title, message: message});
 };
 
 var bundler = watchify(browserify({
-  entries: ['./src/js/app.jsx'],
+  entries: ['./src/app.jsx'],
   transform: [reactify],
   extensions: ['.jsx'],
   debug: true,
@@ -45,7 +44,6 @@ var bundler = watchify(browserify({
 
 function bundle() {
   return bundler
-    .plugin(resolutions, 'react')
     .bundle()
     .on('error', notify)
     .pipe(source('main.js'))
@@ -67,16 +65,15 @@ gulp.task('serve', function(done) {
     }));
 });
 
-gulp.task('less', function () {
-  return gulp.src('./src/less/**/*.less')
-    .pipe(less({
-      paths: [ path.join(__dirname, 'less', 'includes') ]
-    }))
+gulp.task('sass', function () {
+  gulp.src('./src/scss/**/*.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(concat('main.css'))
     .pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('default', ['build', 'serve', 'less', 'watch']);
+gulp.task('default', ['build', 'serve', 'sass', 'watch']);
 
 gulp.task('watch', function () {
-  gulp.watch('./src/less/**/*.less', ['less']);
+  gulp.watch('./src/scss/**/*.scss', ['sass']);
 });

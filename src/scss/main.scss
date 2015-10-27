@@ -1,0 +1,27 @@
+/* main SCSS */
+
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"; /* may need to update this according to your path on your machine */
+
+
+.container {
+	padding-top: 50px;
+}
+
+h1 {
+	margin-bottom: 30px;
+}
+
+.nav-tabs{
+	li {
+		a:focus {
+			outline: none;
+		}
+	}
+}
+
+.tab-content {
+	padding: 15px;
+	border-bottom: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
