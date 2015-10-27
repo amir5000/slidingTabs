@@ -13,13 +13,14 @@ module.exports = React.createClass({
 	handleSelect: function(key) {
 		this.setState({key: key});
 	},
-	handleSwipe: function() {
-		console.log('hi');
+	handlePan: function(event, key) {
+		console.log(event.type);
+		this.setState({key: key});
 	},
   	render: function() {
 	    return (
-	    	<Hammer onSwipe={this.handleSwipe}>
-		    <Tabs defaultActiveKey={1} onSelect={this.handleSelect}>
+	    	<Hammer onPan={this.handlePan}>
+		    <Tabs defaultActiveKey={1} activeKey={this.state.key} onSelect={this.handleSelect}>
 				    <Tab eventKey={1} title="Tab 1">
 					    <h3>Tab 1 Header</h3>
 					    <p>Tab 1 content goes here</p>
