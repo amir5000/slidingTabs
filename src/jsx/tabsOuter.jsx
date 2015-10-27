@@ -13,9 +13,13 @@ module.exports = React.createClass({
 	handleSelect: function(key) {
 		this.setState({key: key});
 	},
-	handlePan: function(event, key) {
-		console.log(event.type);
-		this.setState({key: key});
+	handlePan: function(event) {
+		if (event.deltaX < 0) {
+			this.setState({key: this.state.key+1});
+		} else {
+			this.setState({key: this.state.key-1});
+		}
+		
 	},
   	render: function() {
 	    return (
