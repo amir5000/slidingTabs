@@ -7,24 +7,39 @@ var Hammer = require('react-hammerjs');
 module.exports = React.createClass({
 	getInitialState: function() {
 		return {
-			key: 1
+			key: 1,
+			fire: 1
 		};
 	},
 	handleSelect: function(key) {
 		this.setState({key: key});
 	},
 	handlePan: function(event) {
-		if (event.deltaX < 0) {
-			this.setState({key: this.state.key+1});
-		} else {
-			this.setState({key: this.state.key-1});
+		var threshold = 10;
+		if (this.state.fire === 1) {
+			if (event.deltaX < -threshold && this.refs.TabsRef.props.children.length > this.state.key) {
+				this.setState({key: this.state.key+1});
+			} else if (event.deltaX < -threshold && this.refs.TabsRef.props.children.length === this.state.key-1) {
+				return false;
+			} else if (event.deltaX > threshold && this.state.key !== 1) {
+				this.setState({key: this.state.key-1});
+			} else if (event.deltaX > threshold && this.state.key === 1) {
+				return false;
+			}
+			this.setState({
+				fire: 0
+			});
 		}
-		
+	},
+	handlePanEnd: function() {
+		this.setState({
+				fire: 1
+			});
 	},
   	render: function() {
 	    return (
-	    	<Hammer onPan={this.handlePan}>
-		    <Tabs defaultActiveKey={1} activeKey={this.state.key} onSelect={this.handleSelect}>
+	    	<Hammer onPanEnd={this.handlePanEnd} onPan={this.handlePan}>
+		    <Tabs ref="TabsRef" defaultActiveKey={1} activeKey={this.state.key} tabWidth={4} onSelect={this.handleSelect}>
 				    <Tab eventKey={1} title="Tab 1">
 					    <h3>Tab 1 Header</h3>
 					    <p>Tab 1 content goes here</p>
@@ -52,6 +67,20 @@ module.exports = React.createClass({
 					    <p>Tab 3 content goes here</p>
 					    <p>Tab 3 content goes here</p>
 					    <p>Tab 3 content goes here</p>
+				    </Tab>
+				    <Tab eventKey={4} title="Tab 4">
+				    	<h3>Tab 4 Header</h3>
+					    <p>Tab 4 content goes here</p>
+					    <p>Tab 4 content goes here</p>
+					    <p>Tab 4 content goes here</p>
+					    <p>Tab 4 content goes here</p>
+					    <p>Tab 4 content goes here</p>
+					    <p>Tab 4 content goes here</p>
+				    </Tab>
+				    <Tab eventKey={5} title="Tab 5">
+				    	<h3>Tab 5 Header</h3>
+					    <p>Tab 5 content goes here</p>
+					    <p>Tab 5 content goes here</p>
 				    </Tab>
 				
 			</Tabs>
