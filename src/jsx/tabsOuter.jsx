@@ -19,12 +19,17 @@ module.exports = React.createClass({
 		if (this.state.fire === 1) {
 			if (event.deltaX < -threshold && this.refs.TabsRef.props.children.length > this.state.key) {
 				this.setState({key: this.state.key+1});
-			} else if (event.deltaX < -threshold && this.refs.TabsRef.props.children.length === this.state.key-1) {
-				return false;
+			} else if (event.deltaX < -threshold && this.refs.TabsRef.props.children.length === this.state.key) {
+				this.setState({
+					key: 1
+				});
 			} else if (event.deltaX > threshold && this.state.key !== 1) {
 				this.setState({key: this.state.key-1});
 			} else if (event.deltaX > threshold && this.state.key === 1) {
-				return false;
+				var childrenLength = this.refs.TabsRef.props.children.length;
+				this.setState({
+					key: childrenLength
+				});
 			}
 			this.setState({
 				fire: 0
@@ -39,51 +44,36 @@ module.exports = React.createClass({
   	render: function() {
 	    return (
 	    	<Hammer onPanEnd={this.handlePanEnd} onPan={this.handlePan}>
-		    <Tabs ref="TabsRef" defaultActiveKey={1} activeKey={this.state.key} tabWidth={4} onSelect={this.handleSelect}>
-				    <Tab eventKey={1} title="Tab 1">
-					    <h3>Tab 1 Header</h3>
-					    <p>Tab 1 content goes here</p>
-					    <p>Tab 1 content goes here</p>
-					    <p>Tab 1 content goes here</p>
-				    </Tab>
-				    <Tab eventKey={2} title="Tab 2">
-				    	<h3>Tab 2 Header</h3>
-					    <p>Tab 2 content goes here</p>
-					    <p>Tab 2 content goes here</p>
-					    <p>Tab 2 content goes here</p>
-					    <p>Tab 2 content goes here</p>
-				    </Tab>
-				    <Tab eventKey={3} title="Tab 3">
-				    	<h3>Tab 3 Header</h3>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-					    <p>Tab 3 content goes here</p>
-				    </Tab>
-				    <Tab eventKey={4} title="Tab 4">
-				    	<h3>Tab 4 Header</h3>
-					    <p>Tab 4 content goes here</p>
-					    <p>Tab 4 content goes here</p>
-					    <p>Tab 4 content goes here</p>
-					    <p>Tab 4 content goes here</p>
-					    <p>Tab 4 content goes here</p>
-					    <p>Tab 4 content goes here</p>
-				    </Tab>
-				    <Tab eventKey={5} title="Tab 5">
-				    	<h3>Tab 5 Header</h3>
-					    <p>Tab 5 content goes here</p>
-					    <p>Tab 5 content goes here</p>
-				    </Tab>
-				
-			</Tabs>
+			    <Tabs ref="TabsRef" defaultActiveKey={1} activeKey={this.state.key} tabWidth={4} onSelect={this.handleSelect}>
+					    <Tab eventKey={1} title="Tab 1">
+						    <h3>Tab 1 Header</h3>
+						    <p>Tab 1 content goes here</p>
+						    <p>Tab 1 content goes here</p>
+						    <p>Tab 1 content goes here</p>
+					    </Tab>
+					    <Tab eventKey={2} title="Tab 2">
+					    	<h3>Tab 2 Header</h3>
+						    <p>Tab 2 content goes here</p>
+						    <p>Tab 2 content goes here</p>
+						    <p>Tab 2 content goes here</p>
+						    <p>Tab 2 content goes here</p>
+					    </Tab>
+					    <Tab eventKey={3} title="Tab 3">
+					    	<h3>Tab 3 Header</h3>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+						    <p>Tab 3 content goes here</p>
+					    </Tab>
+				</Tabs>
 			</Hammer>
 			
 	);

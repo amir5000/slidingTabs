@@ -52,7 +52,7 @@ function bundle() {
 bundler.on('update', bundle)
 
 gulp.task('build', function() {
-  bundle()
+  bundle();
 });
 
 gulp.task('serve', function(done) {
