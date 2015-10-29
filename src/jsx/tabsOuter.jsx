@@ -16,12 +16,13 @@ module.exports = React.createClass({
 		this.setState({key: key});
 	},
 	handlePan: function(event) {
+		var threshold = 25;
 		if (this.state.fire === 1) {
-			if (event.deltaX > 10) {
+			if (event.deltaX > threshold) {
 				this.setState({
 					direction: "left"
 				});
-			} else if (event.deltaX < -10) {
+			} else if (event.deltaX < -threshold) {
 				this.setState({
 					direction: "right"
 				});
