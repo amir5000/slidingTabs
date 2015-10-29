@@ -47,7 +47,7 @@ module.exports = React.createClass({
   	render: function() {
 	    return (
 	    	<Hammer onPanEnd={this.handlePanEnd} onPan={this.handlePan}>
-			    <Tabs ref="TabsRef" defaultActiveKey={1} activeKey={this.state.key} onSelect={this.handleSelect}>
+			    <Tabs justified ref="TabsRef" defaultActiveKey={1} activeKey={this.state.key} onSelect={this.handleSelect}>
 					    <Tab eventKey={1} title="Tab 1">
 						    <h3>Tab 1 Header</h3>
 						    <p>Tab 1 content goes here</p>
