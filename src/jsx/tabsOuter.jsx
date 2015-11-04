@@ -17,30 +17,34 @@ module.exports = React.createClass({
 	},
 	handlePan: function(event) {
 		var threshold = 25;
-		if (this.state.fire === 1) {
-			if (event.deltaX > threshold) {
-				this.setState({
-					direction: "left"
-				});
-			} else if (event.deltaX < -threshold) {
+		if (event.deltaX > threshold) {
+			if (this.state.fire === 1) {
 				this.setState({
 					direction: "right"
 				});
 			}
-
+			this.setState({
+				fire: 0
+			});
+		} else if (event.deltaX < -threshold) {
+			if (this.state.fire === 1) {
+				this.setState({
+					direction: "left"
+				});
+			}
 			this.setState({
 				fire: 0
 			});
 		}
 	},
 	handlePanEnd: function() {
-		if (this.state.direction === "right") {
+		if (this.state.direction === "left") {
 			if (this.refs.TabsRef.props.children.length > this.state.key) {
 				this.setState({key: this.state.key+1});
 			} else if (this.refs.TabsRef.props.children.length === this.state.key) {
 				this.setState({key: 1});
 			} 
-		} else if (this.state.direction === "left") {
+		} else if (this.state.direction === "right") {
 			if (this.state.key !== 1) {
 				this.setState({key: this.state.key-1});
 			} else if (this.state.key === 1) {
@@ -53,7 +57,11 @@ module.exports = React.createClass({
 		});
 	},
   	render: function() {
+  		if (this.state.fire === 1 && this.state.direction !== "") {
+  			var direction = <h4 className="text-center">You swiped to the {this.state.direction}</h4>
+  		}
 	    return (
+	    	<div>
 	    	<Hammer onPanEnd={this.handlePanEnd} onPan={this.handlePan}>
 			    <Tabs justified ref="TabsRef" defaultActiveKey={1} activeKey={this.state.key} onSelect={this.handleSelect}>
 					    <Tab eventKey={1} title="Tab 1">
@@ -86,6 +94,8 @@ module.exports = React.createClass({
 					    </Tab>
 				</Tabs>
 			</Hammer>
+			{direction}
+			</div>
 			
 	);
   }
