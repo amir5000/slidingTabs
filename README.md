@@ -5,8 +5,7 @@ A touch enabled react-bootstrap Tabs component built with react-hammerjs for the
 
 ## Technologies used:
 * HTML
-* CSS
-* Javascript
-* react
+* CSS / Sass
+* Javascript / react
 * bootstrap / react-bootstrap
 * react-hammerjs
