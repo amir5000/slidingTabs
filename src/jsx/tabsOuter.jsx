@@ -57,8 +57,13 @@ module.exports = React.createClass({
 		});
 	},
   	render: function() {
+  		var direction;
   		if (this.state.fire === 1 && this.state.direction !== "") {
-  			var direction = <h4 className="text-center">You swiped to the {this.state.direction}</h4>
+  			direction = <h4 className="text-center">You swiped to the {this.state.direction}!</h4>
+  		} else if (this.state.direction === "") {
+  			direction = <h4 className="text-center">Swipe to the Left or to the right to see effect.</h4>
+  		} else {
+  			direction = <h4 className="text-center">Swiping...</h4>
   		}
 	    return (
 	    	<div>
