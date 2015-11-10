@@ -10,7 +10,8 @@ module.exports = React.createClass({
 		return {
 			key: 1,
 			direction: "",
-			fire: 1
+			fire: 1,
+			faClass: ""
 		};
 	},
 	handleSelect: function(key) {
@@ -21,7 +22,8 @@ module.exports = React.createClass({
 		if (event.deltaX > threshold) {
 			if (this.state.fire === 1) {
 				this.setState({
-					direction: "right"
+					direction: "right",
+					faClass: "fa-arrow-right"
 				});
 			}
 			this.setState({
@@ -30,7 +32,8 @@ module.exports = React.createClass({
 		} else if (event.deltaX < -threshold) {
 			if (this.state.fire === 1) {
 				this.setState({
-					direction: "left"
+					direction: "left",
+					faClass: "fa-arrow-left"
 				});
 			}
 			this.setState({
@@ -60,7 +63,7 @@ module.exports = React.createClass({
   	render: function() {
   		var direction;
   		if (this.state.fire === 1 && this.state.direction !== "") {
-  			direction = <h4 className="text-center">You swiped to the {this.state.direction}!</h4>
+  			direction = <h4 className="text-center">You swiped to the {this.state.direction}! <i className={this.state.faClass + " fa"}></i> </h4>
   		} else if (this.state.direction === "") {
   			direction = <h4 className="text-center">Swipe to the Left or to the right to see effect.</h4>
   		} else {
