@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Tabs = require('react-bootstrap').Tabs;
 var Tab = require('react-bootstrap').Tab;
 var Hammer = require('react-hammerjs');
+var Fa = require('font-awesome');
 
 module.exports = React.createClass({
 	getInitialState: function() {

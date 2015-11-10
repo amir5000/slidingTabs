@@ -20,6 +20,7 @@
     "bootstrap": "^3.3.5",
     "browserify": "^11.2.0",
     "browserify-resolutions": "^1.0.6",
+    "font-awesome": "^4.4.0",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.5.2",
     "gulp-react": "^3.0.1",
