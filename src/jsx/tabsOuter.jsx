@@ -3,7 +3,15 @@ var ReactDOM = require('react-dom');
 var Tabs = require('react-bootstrap').Tabs;
 var Tab = require('react-bootstrap').Tab;
 var Hammer = require('react-hammerjs');
-var Fa = require('font-awesome');
+
+var FaStyle = {
+	fontSize: "35px",
+	marginLeft: "20px",
+	marginRight: "20px",
+	position: "relative",
+	top: "5px",
+	color: "green"
+}
 
 module.exports = React.createClass({
 	getInitialState: function() {
@@ -63,7 +71,11 @@ module.exports = React.createClass({
   	render: function() {
   		var direction;
   		if (this.state.fire === 1 && this.state.direction !== "") {
-  			direction = <h4 className="text-center">You swiped to the {this.state.direction}! <i className={this.state.faClass + " fa"}></i> </h4>
+  			if (this.state.direction === "right") {
+  				direction = <h4 className="text-center">You swiped to the {this.state.direction}! <i style={FaStyle} className={this.state.faClass + " fa"}></i></h4>
+  			} else {
+  				direction = <h4 className="text-center"><i style={FaStyle} className={this.state.faClass + " fa"}></i> You swiped to the {this.state.direction}!</h4>
+  			}
   		} else if (this.state.direction === "") {
   			direction = <h4 className="text-center">Swipe to the Left or to the right to see effect.</h4>
   		} else {
